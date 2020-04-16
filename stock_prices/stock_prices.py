@@ -21,17 +21,17 @@ def find_max_profit(prices):
     # find largest number (max_profit_so_far)
     for i in range(0, len(prices)-1):
         current_index = i
-        largest = current_index
         smallest = current_index
+        largest = current_index + 1
         for j in range(largest, len(prices)):
-            if prices[largest] > prices[j]:
+            if prices[largest] < prices[j]:
                 largest = j
-            elif prices[smallest] < prices[j]:
-                smallest = j
-    # find smallest (current_min_price)
-    # check that smallest comes before the largest
+        # find smallest (current_min_price)
+        for k in range(smallest, largest):
+            if prices[smallest] > prices[k]:
+                smallest = k
     # subtract largest from smallest number
-        return prices[smallest] - prices[largest]
+        return prices[largest] - prices[smallest]
 
 
 if __name__ == '__main__':
